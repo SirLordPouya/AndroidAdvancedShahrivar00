@@ -6,8 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.lifecycleScope
+import androidx.room.Room
 import com.pouyaheydari.training.sematec.android.advanced.shahrivar00.databinding.ActivityTestRetrofitBinding
+import com.pouyaheydari.training.sematec.android.advanced.shahrivar00.models.MovieSearch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,12 +32,13 @@ class TestRetrofitActivity : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val db = Room.databaseBuilder(requireContext(), AppDatabase::class.java, "movie").build()
+
         val adapter = SearchMovieRecyclerAdapter {
-            findNavController().navigate(
-                TestRetrofitActivityDirections.actionTestRetrofitActivityToMovieDetailsFragment(
-                    it
-                )
-            )
+            lifecycleScope.launch(Dispatchers.IO) {
+                db.searchDao().insertMovie(it)
+            }
         }
         binding.recyclerMovies.adapter = adapter
 

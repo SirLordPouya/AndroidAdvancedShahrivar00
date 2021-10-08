@@ -12,7 +12,8 @@
         tools:layout="@layout/activity_test_retrofit" >
         <action
             android:id="@+id/action_testRetrofitActivity_to_movieDetailsFragment"
-            app:destination="@id/movieDetailsFragment" />
+            app:destination="@id/movieDetailsFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/movieDetailsFragment"

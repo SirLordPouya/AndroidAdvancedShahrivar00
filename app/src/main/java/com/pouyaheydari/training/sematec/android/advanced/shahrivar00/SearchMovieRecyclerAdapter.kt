@@ -6,8 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.pouyaheydari.training.sematec.android.advanced.shahrivar00.databinding.RecyclerMovieSearchItemBinding
+import com.pouyaheydari.training.sematec.android.advanced.shahrivar00.models.Search
 
-class SearchMovieRecyclerAdapter(val clickListener: (String) -> Unit) :
+class SearchMovieRecyclerAdapter(val clickListener: (Search) -> Unit) :
     ListAdapter<Search, SearchMovieRecyclerAdapter.SearchMovieViewHolder>(MovieDiffUtils()) {
 
 
@@ -31,7 +32,7 @@ class SearchMovieRecyclerAdapter(val clickListener: (String) -> Unit) :
             binding.txtMovieTitle.text = item.Title
             binding.imgMoviePoster.loadUrl(item.Poster)
             binding.root.setOnClickListener {
-                clickListener(item.Title)
+                clickListener(item)
             }
         }
     }
