@@ -12,11 +12,8 @@ import com.pouyaheydari.training.sematec.android.advanced.shahrivar00.di.ClassA
 import com.pouyaheydari.training.sematec.android.advanced.shahrivar00.models.MovieSearch
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import org.koin.android.ext.android.inject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -55,25 +52,35 @@ class TestRetrofitActivity : Fragment() {
         }
         binding.recyclerMovies.adapter = adapter
 
-
-
         binding.btnSearch.setOnClickListener {
             val text = binding.edtMovieName.text.toString()
-            retrofit.searchMoviesByTitle(text, "70ad462a")
-                .enqueue(object : Callback<MovieSearch> {
-                    override fun onResponse(
-                        call: Call<MovieSearch>,
-                        response: Response<MovieSearch>
-                    ) {
-                        adapter.submitList(response.body()?.Search)
-                    }
 
-                    override fun onFailure(call: Call<MovieSearch>, t: Throwable) {
-                        Log.d("TAG", "onFailure: ${t.message}")
-                    }
+            val firstCall = lifecycleScope.async {
+                retrofit.searchMoviesByTitle(text, "70ad462a5")
+            }
 
-                })
+            val secondCall = lifecycleScope.async {
+                retrofit.searchMoviesByTitle(text, "70ad462a5")
+            }
+
+
+            lifecycleScope.launch(Dispatchers.IO) {
+                Log.d("TAG", "onViewCreated: ${Thread.currentThread().name}")
+
+                showResult(firstCall.await(),secondCall.await())
+
+                try {
+                    val result = retrofit.searchMoviesByTitle(text, "70ad462a5")
+                    adapter.submitList(result.Search)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
         }
+
+    }
+
+    fun showResult(first:MovieSearch,second:MovieSearch){
 
     }
 }

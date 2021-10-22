@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/activity_test_retrofit.xml" value="0.31521739130434784" />
+        <entry key="app/src/main/res/layout/activity_test_rx_java.xml" value="0.3265625" />
         <entry key="app/src/main/res/layout/fragment_movie_details.xml" value="0.31521739130434784" />
         <entry key="app/src/main/res/layout/recycler_movie_search_item.xml" value="0.19351570415400202" />
       </map>
