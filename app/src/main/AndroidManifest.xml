@@ -13,9 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidAdvancedShahrivar00">
         <activity
-            android:name=".TestRxJavaActivity"
-            android:exported="true" >
+            android:name=".mvp.TestMVPActivity"
+            android:exported="true">
+
         </activity>
+        <activity
+            android:name=".TestRxJavaActivity"
+            android:exported="true"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -1,4 +1,4 @@
-package com.pouyaheydari.training.sematec.android.advanced.shahrivar00
+package com.pouyaheydari.training.sematec.android.advanced.shahrivar00.repository.network
 
 import com.pouyaheydari.training.sematec.android.advanced.shahrivar00.models.MovieSearch
 import retrofit2.http.GET

@@ -1,4 +1,4 @@
-package com.pouyaheydari.training.sematec.android.advanced.shahrivar00
+package com.pouyaheydari.training.sematec.android.advanced.shahrivar00.repository.local
 
 import androidx.room.Dao
 import androidx.room.Insert

@@ -2,6 +2,7 @@ package com.pouyaheydari.training.sematec.android.advanced.shahrivar00
 
 import android.content.Context
 import androidx.room.Room
+import com.pouyaheydari.training.sematec.android.advanced.shahrivar00.repository.network.TestRetrofitInterface
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
